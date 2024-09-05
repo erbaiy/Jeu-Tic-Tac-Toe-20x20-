@@ -6,8 +6,10 @@
     let gameActive=true;
     let playerStatus = document.getElementById('status');
     let defineBoard = Array(20).fill(null).map(() => Array(20).fill(null)); // Reset board state
-    let scoreX = 0;           // Player X score
-    let scoreO = 0;   
+    let scoreX;    // Player X score
+    let scoreO;   // Player O score
+    let recharger=document.getElementById('recharger');
+    recharger.addEventListener('click',gameOver)
        
 
     function initializeScores() {
@@ -34,18 +36,15 @@
         }
         
     }
+
     function handleClick(event) {
         let cell = event.target;
         const [row, col] = cell.dataset.cellIndex.split('-').map(Number);
 
-        // If the cell is already filled or the game is inactive, return early
         if(defineBoard[row][col]|| !gameActive) return;
-
-
-        // Update the board state
         defineBoard[row][col] = currentPlayer;
         cell.textContent = currentPlayer;
-        // Check for winner
+        cell.style.backgroundColor = currentPlayer == "X" ? "red" : "green";
         if (checkForWinner(row, col)) {
             // alert('game over');
             playerStatus.textContent = `Joueur ${currentPlayer} a gagné !`;
@@ -57,7 +56,6 @@
             gameActive = false;
             return;
         }
-
         // Switch player
         currentPlayer = currentPlayer === "X" ? "O" : "X";
         playerStatus.textContent = `Joueur ${currentPlayer}, à vous de jouer !`;
@@ -105,6 +103,15 @@ scoreDisplayX.textContent=scoreX;
 console.log(scoreX);
         }
 
+function gameOver(){
+    window.localStorage.clear();
+    board.innerHTML='';
+    gameActive=true;
+    currentPlayer="X";
+    createBoard();
+    initializeScores();
+}
+    
 
         initializeScores();
  

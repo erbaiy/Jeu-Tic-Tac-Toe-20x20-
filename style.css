@@ -36,3 +36,31 @@ body {
     font-family: monospace;
     
 } */
+
+#new{
+    margin-top: 20px;
+    background: rgb(156, 148, 148);
+    border-radius: 5px;
+}
+#recharger{
+    font-family: auto;
+    background-color: rgb(213, 22, 22);
+    color: azure;
+    border-radius: 8px;
+    
+}
+#restart{
+    font-family: auto;
+    background-color: rgb(104, 138, 10);
+    color: azure;
+    border-radius: 8px;
+
+
+}
+#recharger:hover {
+    background-color: #0e120e00; 
+    
+}
+#restart:hover {
+    background-color: #0e120e00; 
+}
